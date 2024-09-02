@@ -11,5 +11,3 @@ gaconmidi.sh
   or  
 gaconmidi 128  
 this 128 is ALSA device number from aconnect -l.  
-
-128 is ALSA device number from aconnect -l.
