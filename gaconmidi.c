@@ -115,15 +115,15 @@ void quit_screen(void)
 
 int main(int argc, char *argv[])
 {
-	SDL_Joystick *joy;
-	SDL_Event event;
+    SDL_Joystick *joy;
+    SDL_Event event;
 
-   	snd_seq_t *seq;
-	snd_seq_event_t ev;
-	int oid;
-	int ret;
+    snd_seq_t *seq;
+    snd_seq_event_t ev;
+    int oid;
+    int ret;
 
-	int quit;
+    int quit;
     int pgm, msb, lsb, rev, cho, ch;
     int dest;
     int dest_dev = 0;
@@ -146,18 +146,18 @@ int main(int argc, char *argv[])
     
     init_screen();
     SDL_Init(SDL_INIT_TIMER | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC);
- 	joy = SDL_JoystickOpen(0);
+     joy = SDL_JoystickOpen(0);
 
 
-	ret = snd_seq_open(&seq, "default", SND_SEQ_OPEN_OUTPUT, SND_SEQ_NONBLOCK);
-	ERRCHECK(ret);
-	snd_seq_set_client_name(seq, "gaconmidi");
+    ret = snd_seq_open(&seq, "default", SND_SEQ_OPEN_OUTPUT, SND_SEQ_NONBLOCK);
+    ERRCHECK(ret);
+    snd_seq_set_client_name(seq, "gaconmidi");
 
-	oid = snd_seq_create_simple_port(seq, "OUTPUT", SND_SEQ_PORT_CAP_READ | SND_SEQ_PORT_CAP_SUBS_READ, SND_SEQ_PORT_TYPE_APPLICATION);
-	ERRCHECK(oid);
+    oid = snd_seq_create_simple_port(seq, "OUTPUT", SND_SEQ_PORT_CAP_READ | SND_SEQ_PORT_CAP_SUBS_READ, SND_SEQ_PORT_TYPE_APPLICATION);
+    ERRCHECK(oid);
 
-	ret = snd_seq_connect_to(seq, oid, dest, dest_dev);
-	ERRCHECK(ret);
+    ret = snd_seq_connect_to(seq, oid, dest, dest_dev);
+    ERRCHECK(ret);
     snd_seq_ev_clear(&ev);
     snd_seq_ev_set_source(&ev, oid);
     snd_seq_ev_set_subs(&ev);
@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
     }
 
     SDL_JoystickClose(joy);
-   	SDL_Quit();
+    SDL_Quit();
     quit_screen();
     return 0;
 }
