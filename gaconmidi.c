@@ -75,11 +75,6 @@ void print_cho(int x)
 
 void init_screen(void)
 {
-	initscr();
-	
-	init_pair(1, COLOR_WHITE + 8, COLOR_BLUE);
-	bkgd(COLOR_PAIR(1));
-
 	noecho();
 	cbreak();
 	curs_set(0);
@@ -157,15 +152,18 @@ int main(int argc, char *argv[])
 		SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
 	pdc_screen = SDL_GetWindowSurface(pdc_window);
 
-	init_screen();
 
 	initscr();
 	start_color();
 	scrollok(stdscr, TRUE);
 	PDC_set_title("gaconmidi");
+	init_pair(1, COLOR_WHITE + 8, COLOR_BLUE);
+	bkgd(COLOR_PAIR(1));
+
+	init_screen();
 
 
-	 joy = SDL_JoystickOpen(0);
+	joy = SDL_JoystickOpen(0);
 
 
 	ret = snd_seq_open(&seq, "default", SND_SEQ_OPEN_OUTPUT, SND_SEQ_NONBLOCK);

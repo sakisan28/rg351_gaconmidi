@@ -2,12 +2,14 @@ all : gaconmidi
 
 gaconmidi : gaconmidi.c pdcurses.a
 	gcc -o gaconmidi gaconmidi.c pdcurses.a -lncurses -lSDL2 -lasound
+	chmod +x gaconmidi.sh
 
 install : gaconmidi gaconmidi.sh
-	sudo cp gaconmidi gaconmidi.sh /roms/ports
+	sudo cp gaconmidi gaconmidi.sh /roms/tools
 
 clean :
 	rm -fr PDCurses
+	rm pdcurses.h curspriv.h pdcurses.a pdcsdl.h
 
 pdcurses.a :
 	git clone https://github.com/wmcbrine/PDCurses
